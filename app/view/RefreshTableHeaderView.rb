@@ -7,31 +7,40 @@ class RefreshTableHeaderView < UIView
       self.autoresizingMask = UIViewAutoresizingFlexibleWidth      
       self.backgroundColor = UIColor.colorWithRed(226.0/255, green:231.0/255, blue: 237.0/255, alpha:1)
       
-      @lastUpdatedLabel = UILabel.alloc.initWithFrame(CGRectMake(0, frame.size.height - 30, frame.size.width, 20))
-      @lastUpdatedLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth
-      @lastUpdatedLabel.font = UIFont.systemFontOfSize(12)
-      @lastUpdatedLabel.textColor = UIColor.colorWithRed(87.0/255, green:108.0/255, blue:237.0/137, alpha:1.0)
-      @lastUpdatedLabel.shadowColor = UIColor.colorWithWhite(0.9, alpha:1.0)
-      @lastUpdatedLabel.shadowOffset = CGSizeMake(0,1)
-      @lastUpdatedLabel.backgroundColor = UIColor.clearColor
-      @lastUpdatedLabel.textAlignment = UITextAlignmentCenter      
+      @lastUpdatedLabel = begin
+        l = UILabel.alloc.initWithFrame(CGRectMake(0, frame.size.height - 30, frame.size.width, 20))
+        l.autoresizingMask = UIViewAutoresizingFlexibleWidth
+        l.font = UIFont.systemFontOfSize(12)
+        l.textColor = UIColor.colorWithRed(87.0/255, green:108.0/255, blue:237.0/137, alpha:1.0)
+        l.shadowColor = UIColor.colorWithWhite(0.9, alpha:1.0)
+        l.shadowOffset = CGSizeMake(0,1)
+        l.backgroundColor = UIColor.clearColor
+        l.textAlignment = UITextAlignmentCenter      
+        l
+      end
       self.addSubview(@lastUpdatedLabel)
 
-      @statusLabel = UILabel.alloc.initWithFrame(CGRectMake(0, frame.size.height-48, frame.size.width, 20))
-      @statusLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth
-      @statusLabel.font = UIFont.boldSystemFontOfSize(13)
-      @statusLabel.textColor = UIColor.colorWithRed(87.0/255, green:108.0/255, blue:237.0/137, alpha:1.0)
-      @statusLabel.shadowColor = UIColor.colorWithWhite(0.9, alpha:1.0)
-      @statusLabel.shadowOffset = CGSizeMake(0,1)
-      @statusLabel.backgroundColor = UIColor.clearColor
-      @statusLabel.textAlignment = UITextAlignmentCenter
+      @statusLabel = begin
+        l = UILabel.alloc.initWithFrame(CGRectMake(0, frame.size.height-48, frame.size.width, 20))
+        l.autoresizingMask = UIViewAutoresizingFlexibleWidth
+        l.font = UIFont.boldSystemFontOfSize(13)
+        l.textColor = UIColor.colorWithRed(87.0/255, green:108.0/255, blue:237.0/137, alpha:1.0)
+        l.shadowColor = UIColor.colorWithWhite(0.9, alpha:1.0)
+        l.shadowOffset = CGSizeMake(0,1)
+        l.backgroundColor = UIColor.clearColor
+        l.textAlignment = UITextAlignmentCenter        
+        l
+      end      
       self.addSubview(@statusLabel)
 
-      @arrowImage = CALayer.layer
-      @arrowImage.frame = CGRectMake(25, frame.size.height-65, 30, 55)
-      @arrowImage.contentsGravity = KCAGravityResizeAspect
-      @arrowImage.contents = UIImage.imageNamed("blueArrow.png").CGImage
-      @arrowImage.contentsScale = UIScreen.mainScreen.scale
+      @arrowImage = begin
+        l = CALayer.layer
+        l.frame = CGRectMake(25, frame.size.height-65, 30, 55)
+        l.contentsGravity = KCAGravityResizeAspect
+        l.contents = UIImage.imageNamed("blueArrow.png").CGImage
+        l.contentsScale = UIScreen.mainScreen.scale        
+        l
+      end
       self.layer.addSublayer(@arrowImage)
 
       @activityView = UIActivityIndicatorView.alloc.initWithActivityIndicatorStyle(UIActivityIndicatorViewStyleGray)

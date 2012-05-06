@@ -4,11 +4,12 @@ class RootViewController < UITableViewController
   end
 
   def viewDidAppear(animated)
-    if !@refreshHeaderView
-      @refreshHeaderView = RefreshTableHeaderView.alloc.initWithFrame(CGRectMake(0, 0 - self.tableView.bounds.size.height, self.tableView.bounds.size.width, self.tableView.bounds.size.height))
-      @refreshHeaderView.delegate = self
-      @refreshHeaderView.refreshLastUpdatedDate    
-      tableView.addSubview(@refreshHeaderView)
+    @refreshHeaderView ||= begin
+      rhv = RefreshTableHeaderView.alloc.initWithFrame(CGRectMake(0, 0 - self.tableView.bounds.size.height, self.tableView.bounds.size.width, self.tableView.bounds.size.height))
+      rhv.delegate = self
+      rhv.refreshLastUpdatedDate    
+      tableView.addSubview(rhv)
+      rhv
     end 
   end
     
@@ -22,10 +23,7 @@ class RootViewController < UITableViewController
   
   def tableView(tableView, cellForRowAtIndexPath:indexPath)
     cellIdentifier = "Cell"
-    cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier)
-    unless cell
-       cell = UITableViewCell.alloc.initWithStyle(UITableViewCellStyleDefault, reuseIdentifier:(cellIdentifier)) 
-    end
+    cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier) || UITableViewCell.alloc.initWithStyle(UITableViewCellStyleDefault, reuseIdentifier:(cellIdentifier)) 
     return cell    
   end
   
