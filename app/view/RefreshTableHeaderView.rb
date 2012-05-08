@@ -1,3 +1,20 @@
+#  RefreshTableHeaderView
+# 
+#  RubyMotion implementation of https://github.com/enormego/EGOTableViewPullRefresh
+#
+#  Created By Richard Owens, 2012/05/04
+#  Copyright 2012 Richard Owens.  All rights reserved. 
+# 
+#  Permission is hereby granted, free of charge, to any person obtaining a copy
+#  of this software and associated documentation files (the "Software"), to deal
+#  in the Software without restriction, including without limitation the rights
+#  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+#  copies of the Software, and to permit persons to whom the Software is
+#  furnished to do so, subject to the following conditions:
+#
+#  The above copyright notice and this permission notice shall be included in
+#  all copies or substantial portions of the Software.
+#
 class RefreshTableHeaderView < UIView
 
   attr_accessor :delegate
@@ -8,7 +25,7 @@ class RefreshTableHeaderView < UIView
       self.backgroundColor = UIColor.colorWithRed(226.0/255, green:231.0/255, blue: 237.0/255, alpha:1)
       
       @lastUpdatedLabel = begin
-        l = UILabel.alloc.initWithFrame(CGRectMake(0, frame.size.height - 30, frame.size.width, 20))
+        l = UILabel.alloc.initWithFrame([[0, frame.size.height - 30], [frame.size.width, 20]])
         l.autoresizingMask = UIViewAutoresizingFlexibleWidth
         l.font = UIFont.systemFontOfSize(12)
         l.textColor = UIColor.colorWithRed(87.0/255, green:108.0/255, blue:237.0/137, alpha:1.0)
@@ -21,7 +38,7 @@ class RefreshTableHeaderView < UIView
       self.addSubview(@lastUpdatedLabel)
 
       @statusLabel = begin
-        l = UILabel.alloc.initWithFrame(CGRectMake(0, frame.size.height-48, frame.size.width, 20))
+        l = UILabel.alloc.initWithFrame([[0, frame.size.height-48], [frame.size.width, 20]])
         l.autoresizingMask = UIViewAutoresizingFlexibleWidth
         l.font = UIFont.boldSystemFontOfSize(13)
         l.textColor = UIColor.colorWithRed(87.0/255, green:108.0/255, blue:237.0/137, alpha:1.0)
@@ -35,7 +52,7 @@ class RefreshTableHeaderView < UIView
 
       @arrowImage = begin
         l = CALayer.layer
-        l.frame = CGRectMake(25, frame.size.height-65, 30, 55)
+        l.frame = [[25, frame.size.height-65], [30, 55]]
         l.contentsGravity = KCAGravityResizeAspect
         l.contents = UIImage.imageNamed("blueArrow.png").CGImage
         l.contentsScale = UIScreen.mainScreen.scale        
@@ -44,7 +61,7 @@ class RefreshTableHeaderView < UIView
       self.layer.addSublayer(@arrowImage)
 
       @activityView = UIActivityIndicatorView.alloc.initWithActivityIndicatorStyle(UIActivityIndicatorViewStyleGray)
-      @activityView.frame = CGRectMake(25, frame.size.height - 38, 20, 20)
+      @activityView.frame = [[25, frame.size.height - 38], [20, 20]]
       self.addSubview(@activityView)
       
       setState(:pullRefreshNormal)
